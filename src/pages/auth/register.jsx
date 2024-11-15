@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import register from '../../assets/register.png';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
 
@@ -12,6 +13,7 @@ function Register() {
     const [height, setHeight] = useState('');
     const [weight, setWeight] = useState('');
     const [goals, setGoals] = useState('');
+    const navigate = useNavigate();
 
     // Check if all fields are filled
     const formValid = username && email && password && age && gender && height && weight && goals;
@@ -57,6 +59,7 @@ function Register() {
     // using onClick to show alert
     const showAlert = () => {
         alert('Form submitted successfully!');
+        navigate('/login');
     }
 
 
