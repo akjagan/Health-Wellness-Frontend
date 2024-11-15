@@ -20,6 +20,8 @@ function Register() {
 
     const handleSubmit = async (e) => {
 
+        e.preventDefault();
+
         if (!username || !email || !password || !age || !gender || !height || !weight || !goals) {
             console.error("Please fill in all required fields.");
             return;
@@ -48,6 +50,7 @@ function Register() {
             if (response.ok) {
                 // Handle success
                 console.log('User registered successfully');
+                showAlert();
             } else {
                 // Handle error
                 console.error('Registration failed');
@@ -171,7 +174,7 @@ function Register() {
                         />
                     </div>
                     <button
-                        type="submit" onClick={showAlert} disabled={!formValid}
+                        type="submit" disabled={!formValid}
                         className={`w-full py-2 px-4 ${formValid ? 'bg-primary-500' : 'bg-primary-200'}  text-white rounded ${formValid ? 'hover:bg-primary-700' : 'hover:bg-primary-200'} transition duration-200`}
                     >
                         Register
