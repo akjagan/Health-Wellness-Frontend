@@ -54,7 +54,7 @@ function Dashboard() {
         }
 
         // Fetch user data using token
-        axios.get('http://localhost:3000/dashboard', {
+        axios.get('https://health-and-wellness-app-back-end.onrender.com/dashboard', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -81,7 +81,7 @@ function Dashboard() {
         const token = localStorage.getItem('token');
 
         //Fetch data from goals and Tracks
-        axios.get('http://localhost:3000/goaltrackers/view', {
+        axios.get('https://health-and-wellness-app-back-end.onrender.com/goaltrackers/view', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }

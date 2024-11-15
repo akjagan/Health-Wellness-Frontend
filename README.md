@@ -34,7 +34,7 @@ This repository contains the code for a health and wellness dashboard applicatio
 ### Prerequisites
 
 - **Node.js** and **npm** are required.
-- **Backend server**: An API server should be running locally at `http://localhost:3000` to handle user and goal data requests.
+- **Backend server**: An API server should be running locally at `https://health-and-wellness-app-back-end.onrender.com` to handle user and goal data requests.
 - **Authentication**: The app expects a valid token stored in `localStorage` under the key `token`.
 
 - **Backend API**: Ensure a compatible backend server is running. The app sends requests to:

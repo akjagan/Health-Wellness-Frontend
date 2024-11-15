@@ -26,7 +26,7 @@ function Home() {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-        axios.get('http://localhost:3000/goaltrackers/view', {
+        axios.get('https://health-and-wellness-app-back-end.onrender.com/goaltrackers/view', {
             headers: { Authorization: `Bearer ${token}` },
         })
             .then(response => {

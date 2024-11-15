@@ -31,7 +31,7 @@ function ExerciseModel() {
         const token = localStorage.getItem('token');
 
         // Fetch Exercise MOdel data using token
-        axios.get('http://localhost:3000/exercisemodels/view', {
+        axios.get('https://health-and-wellness-app-back-end.onrender.com/exercisemodels/view', {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
@@ -63,7 +63,7 @@ function ExerciseModel() {
         // If editExerciseId is set, perform PATCH request; otherwise, add a new MOdel
         if (editExerciseId) {
             // Edit existing Model
-            axios.patch(`http://localhost:3000/exercisemodels/${editExerciseId}`, formData, {
+            axios.patch(`https://health-and-wellness-app-back-end.onrender.com/exercisemodels/${editExerciseId}`, formData, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
@@ -86,7 +86,7 @@ function ExerciseModel() {
         } else {
             // Add new Model
             const newModel = { ...formData, date: new Date() };
-            axios.post('http://localhost:3000/exercisemodels', newModel, {
+            axios.post('https://health-and-wellness-app-back-end.onrender.com/exercisemodels', newModel, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
@@ -131,7 +131,7 @@ function ExerciseModel() {
     const handleDelete = (exeId) => {
         const token = localStorage.getItem('token');
 
-        axios.delete(`http://localhost:3000/exercisemodels/${exeId}`, {
+        axios.delete(`https://health-and-wellness-app-back-end.onrender.com/exercisemodels/${exeId}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },

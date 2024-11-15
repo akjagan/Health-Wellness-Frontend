@@ -13,7 +13,7 @@ function Profile() {
         const token = localStorage.getItem('token');
 
         // Fetch user data using token
-        axios.get('http://localhost:3000/dashboard', {
+        axios.get('https://health-and-wellness-app-back-end.onrender.com/dashboard', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }

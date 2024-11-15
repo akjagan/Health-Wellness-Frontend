@@ -41,7 +41,7 @@ function Goal() {
         const token = localStorage.getItem('token');
 
         // Fetch Goal data using token
-        axios.get('http://localhost:3000/goaltrackers/view', {
+        axios.get('https://health-and-wellness-app-back-end.onrender.com/goaltrackers/view', {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
@@ -72,7 +72,7 @@ function Goal() {
         // If editGoalId is set, perform PATCH request; otherwise, add a new goal & track
         if (editTrackId) {
             // Edit existing goal
-            axios.patch(`http://localhost:3000/goaltrackers/${editTrackId}`, formData, {
+            axios.patch(`https://health-and-wellness-app-back-end.onrender.com/goaltrackers/${editTrackId}`, formData, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
@@ -95,7 +95,7 @@ function Goal() {
         } else {
             // Add new Goal & Track
             const newTrack = { ...formData, date: new Date() };
-            axios.post('http://localhost:3000/goaltrackers', newTrack, {
+            axios.post('https://health-and-wellness-app-back-end.onrender.com/goaltrackers', newTrack, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
@@ -153,7 +153,7 @@ function Goal() {
     const handleDelete = (trackId) => {
         const token = localStorage.getItem('token');
 
-        axios.delete(`http://localhost:3000/goaltrackers/${trackId}`, {
+        axios.delete(`https://health-and-wellness-app-back-end.onrender.com/goaltrackers/${trackId}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },

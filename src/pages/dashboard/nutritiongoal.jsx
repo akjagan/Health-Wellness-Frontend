@@ -31,7 +31,7 @@ function Nutritiongoal() {
         const token = localStorage.getItem('token');
 
         // Fetch Nutrition goal data using token
-        axios.get('http://localhost:3000/nutritiongoal/view', {
+        axios.get('https://health-and-wellness-app-back-end.onrender.com/nutritiongoal/view', {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
@@ -62,7 +62,7 @@ function Nutritiongoal() {
         // If editGoalId is set, perform PATCH request; otherwise, add a new goal
         if (editGoalId) {
             // Edit existing goal
-            axios.patch(`http://localhost:3000/nutritiongoal/${editGoalId}`, formData, {
+            axios.patch(`https://health-and-wellness-app-back-end.onrender.com/nutritiongoal/${editGoalId}`, formData, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
@@ -85,7 +85,7 @@ function Nutritiongoal() {
         } else {
             // Add new goal
             const newGoal = { ...formData, date: new Date() };
-            axios.post('http://localhost:3000/nutritiongoal', newGoal, {
+            axios.post('https://health-and-wellness-app-back-end.onrender.com/nutritiongoal', newGoal, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
@@ -129,7 +129,7 @@ function Nutritiongoal() {
     const handleDelete = (goalId) => {
         const token = localStorage.getItem('token');
 
-        axios.delete(`http://localhost:3000/nutritiongoal/${goalId}`, {
+        axios.delete(`https://health-and-wellness-app-back-end.onrender.com/nutritiongoal/${goalId}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },

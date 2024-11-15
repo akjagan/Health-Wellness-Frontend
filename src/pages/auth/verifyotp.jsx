@@ -14,7 +14,7 @@ function Verifyotp() {
         };
 
         try {
-            const response = await fetch('http://localhost:3000/forgotpassword/validate', {
+            const response = await fetch('https://health-and-wellness-app-back-end.onrender.com/forgotpassword/validate', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
