@@ -49,11 +49,11 @@ function Register() {
 
             if (response.ok) {
                 // Handle success
-                console.log('User registered successfully');
+                alert('User registered successfully');
                 showAlert();
             } else {
-                // Handle error
-                console.error('Registration failed');
+                // Handle error;
+                alert('Already registered');
             }
         } catch (error) {
             console.error('Error:', error);
@@ -81,6 +81,7 @@ function Register() {
                             type="text"
                             id="username"
                             name="username"
+                            placeholder='User Name'
                             onChange={(e) => setUsername(e.target.value)}
                             className="border border-primary rounded w-full py-2 px-3 focus:outline-none focus:border-primary-500"
                             required
@@ -92,6 +93,7 @@ function Register() {
                             type="email"
                             id="email"
                             name="email"
+                            placeholder='Email'
                             onChange={(e) => setEmail(e.target.value)}
                             required
                             className="border border-primary rounded w-full py-2 px-3 focus:outline-none focus:border-primary-500"
@@ -103,6 +105,7 @@ function Register() {
                             type="password"
                             id="password"
                             name="password"
+                            placeholder='Password'
                             required
                             onChange={(e) => setPassword(e.target.value)}
                             className="border border-primary rounded w-full py-2 px-3 focus:outline-none focus:border-primary-500"
@@ -115,6 +118,7 @@ function Register() {
                                 type="number"
                                 id="age"
                                 name="age"
+                                placeholder='Age'
                                 onChange={(e) => setAge(e.target.value)}
                                 required
                                 className="border border-primary rounded w-full py-2 px-3 focus:outline-none focus:border-primary-500"
@@ -125,6 +129,7 @@ function Register() {
                             <select
                                 id="gender"
                                 name="gender"
+                                placeholder='Gender'
                                 onChange={(e) => setGender(e.target.value)}
                                 required
                                 value={gender}
@@ -144,6 +149,7 @@ function Register() {
                                 type="number"
                                 id="height"
                                 name="height"
+                                placeholder='Height'
                                 required
                                 onChange={(e) => setHeight(e.target.value)}
                                 className="border border-primary rounded w-full py-2 px-3 focus:outline-none focus:border-primary-500"
@@ -155,6 +161,7 @@ function Register() {
                                 type="weight"
                                 id="weight"
                                 name="weight"
+                                placeholder='Weight'
                                 required
                                 onChange={(e) => setWeight(e.target.value)}
                                 className="border border-primary rounded w-full py-2 px-3 focus:outline-none focus:border-primary-500"

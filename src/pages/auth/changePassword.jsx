@@ -30,7 +30,7 @@ function ChangePassword() {
                 });
 
                 if (response.ok) {
-                    console.log('Password changed successfully');
+                    alert('Password changed successfully');
                     navigate('/');
                 } else {
                     const error = await response.json();
@@ -60,6 +60,7 @@ function ChangePassword() {
                             type="email"
                             id="email"
                             name="email"
+                            placeholder='Email'
                             onChange={(e) => setEmail(e.target.value)}
                             required
                             className="border border-primary rounded w-full py-2 px-3 focus:outline-none focus:border-primary-500"
@@ -71,6 +72,7 @@ function ChangePassword() {
                             type="Password"
                             id="changePassword"
                             name="Password"
+                            placeholder='New Password'
                             onChange={(e) => setPassword(e.target.value)}
                             required
                             className="border border-primary rounded w-full py-2 px-3 focus:outline-none focus:border-primary-500"
@@ -81,6 +83,7 @@ function ChangePassword() {
                         <input
                             type="password"
                             id="conformpassword"
+                            placeholder='Conform Password'
                             name="password"
                             onChange={(e) => setconformPassword(e.target.value)}
                             required

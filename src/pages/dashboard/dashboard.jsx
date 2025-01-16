@@ -62,7 +62,6 @@ function Dashboard() {
             .then(response => {
                 // Set user data and loading state to false
                 setUser(response.data);
-                console.log('setUser', response.data)
             })
             .catch((error) => {
                 if (error.response && error.response.status === 401) {

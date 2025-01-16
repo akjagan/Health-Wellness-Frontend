@@ -49,6 +49,7 @@ function Verifyotp() {
                             type="number"
                             id="otp"
                             name="otp"
+                            placeholder='OTP'
                             onChange={(e) => setOTP(e.target.value)}
                             required
                             className="border border-primary rounded w-full py-2 px-3 focus:outline-none focus:border-primary-500"

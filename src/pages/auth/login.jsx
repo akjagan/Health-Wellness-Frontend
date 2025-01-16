@@ -62,6 +62,7 @@ function Login() {
                             type="email"
                             id="email"
                             name="email"
+                            placeholder='Email'
                             onChange={(e) => setEmail(e.target.value)}
                             className="border border-primary rounded w-full py-2 px-3 focus:outline-none focus:border-primary-500"
                         />
@@ -72,6 +73,7 @@ function Login() {
                             type="password"
                             id="password"
                             name="password"
+                            placeholder='Password'
                             onChange={(e) => setPassword(e.target.value)}
                             className="border border-primary rounded w-full py-2 px-3 focus:outline-none focus:border-primary-500"
                         />
