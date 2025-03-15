@@ -21,13 +21,16 @@ function ChangePassword() {
 
             try {
                 // Change password logic here
-                const response = await fetch('https://health-and-wellness-app-back-end.onrender.com/changepassword', {
-                    method: 'PATCH',
+                const response = await fetch(
+                  "https://health-wellness-backend.onrender.com/changepassword",
+                  {
+                    method: "PATCH",
                     headers: {
-                        'Content-Type': 'application/json'
+                      "Content-Type": "application/json",
                     },
-                    body: JSON.stringify(formData)
-                });
+                    body: JSON.stringify(formData),
+                  }
+                );
 
                 if (response.ok) {
                     alert('Password changed successfully');

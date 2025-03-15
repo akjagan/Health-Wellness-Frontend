@@ -13,18 +13,19 @@ function Profile() {
         const token = localStorage.getItem('token');
 
         // Fetch user data using token
-        axios.get('https://health-and-wellness-app-back-end.onrender.com/dashboard', {
+        axios
+          .get("https://health-wellness-backend.onrender.com/dashboard", {
             headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
-            .then(response => {
-                // Set user data and loading state to false
-                setUser(response.data);
-            })
-            .catch((error) => {
-                setError('Error fetching user data');
-            });
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then((response) => {
+            // Set user data and loading state to false
+            setUser(response.data);
+          })
+          .catch((error) => {
+            setError("Error fetching user data");
+          });
     }, []);
 
     // error handling

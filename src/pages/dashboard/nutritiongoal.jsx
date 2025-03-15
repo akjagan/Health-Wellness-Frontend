@@ -31,19 +31,23 @@ function Nutritiongoal() {
         const token = localStorage.getItem('token');
 
         // Fetch Nutrition goal data using token
-        axios.get('https://health-and-wellness-app-back-end.onrender.com/nutritiongoal/view', {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-            },
-        })
-            .then(response => {
-                setUser(response.data);
-                setLoading(false); // Data fetched, stop loading
-            })
-            .catch(error => {
-                setError(error);
-                setLoading(false); // Stop loading on error
-            });
+        axios
+          .get(
+            "https://health-wellness-backend.onrender.com/nutritiongoal/view",
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          )
+          .then((response) => {
+            setUser(response.data);
+            setLoading(false); // Data fetched, stop loading
+          })
+          .catch((error) => {
+            setError(error);
+            setLoading(false); // Stop loading on error
+          });
     }, []);
 
     const handleInputChange = (e) => {
@@ -62,43 +66,52 @@ function Nutritiongoal() {
         // If editGoalId is set, perform PATCH request; otherwise, add a new goal
         if (editGoalId) {
             // Edit existing goal
-            axios.patch(`https://health-and-wellness-app-back-end.onrender.com/nutritiongoal/${editGoalId}`, formData, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                },
-            })
-                .then(response => {
-                    setUser(prevState => {
-                        return {
-                            ...prevState,
-                            data: prevState.data.map(goal =>
-                                goal._id === editGoalId ? response.data : goal
-                            )
-                        };
-                    });
-                    setShowPopup(false);
-                    handleReload();
-                    setEditGoalId(null); // Reset after editing
-
-                })
-                .catch(error => setError(error));
+            axios
+              .patch(
+                `https://health-wellness-backend.onrender.com/nutritiongoal/${editGoalId}`,
+                formData,
+                {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                  },
+                }
+              )
+              .then((response) => {
+                setUser((prevState) => {
+                  return {
+                    ...prevState,
+                    data: prevState.data.map((goal) =>
+                      goal._id === editGoalId ? response.data : goal
+                    ),
+                  };
+                });
+                setShowPopup(false);
+                handleReload();
+                setEditGoalId(null); // Reset after editing
+              })
+              .catch((error) => setError(error));
         } else {
             // Add new goal
             const newGoal = { ...formData, date: new Date() };
-            axios.post('https://health-and-wellness-app-back-end.onrender.com/nutritiongoal', newGoal, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                },
-            })
-                .then(response => {
-                    setUser(prevState => ({
-                        ...prevState,
-                        data: [...prevState.data, response.data]
-                    }));
-                    setShowPopup(false);
-                    handleReload();
-                })
-                .catch(error => setError(error));
+            axios
+              .post(
+                "https://health-wellness-backend.onrender.com/nutritiongoal",
+                newGoal,
+                {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                  },
+                }
+              )
+              .then((response) => {
+                setUser((prevState) => ({
+                  ...prevState,
+                  data: [...prevState.data, response.data],
+                }));
+                setShowPopup(false);
+                handleReload();
+              })
+              .catch((error) => setError(error));
         }
     };
 
@@ -129,19 +142,23 @@ function Nutritiongoal() {
     const handleDelete = (goalId) => {
         const token = localStorage.getItem('token');
 
-        axios.delete(`https://health-and-wellness-app-back-end.onrender.com/nutritiongoal/${goalId}`, {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-            },
-        })
-            .then(() => {
-                // Refresh the user data by removing the deleted goal
-                setUser(prevState => ({
-                    ...prevState,
-                    data: prevState.data.filter(goal => goal._id !== goalId)
-                }));
-            })
-            .catch(error => setError(error));
+        axios
+          .delete(
+            `https://health-wellness-backend.onrender.com/nutritiongoal/${goalId}`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          )
+          .then(() => {
+            // Refresh the user data by removing the deleted goal
+            setUser((prevState) => ({
+              ...prevState,
+              data: prevState.data.filter((goal) => goal._id !== goalId),
+            }));
+          })
+          .catch((error) => setError(error));
     };
 
     return (

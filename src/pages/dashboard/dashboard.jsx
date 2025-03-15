@@ -54,24 +54,25 @@ function Dashboard() {
         }
 
         // Fetch user data using token
-        axios.get('https://health-and-wellness-app-back-end.onrender.com/dashboard', {
+        axios
+          .get("https://health-wellness-backend.onrender.com/dashboard", {
             headers: {
-                'Authorization': `Bearer ${token}`
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then((response) => {
+            // Set user data and loading state to false
+            setUser(response.data);
+          })
+          .catch((error) => {
+            if (error.response && error.response.status === 401) {
+              // Token expired or unauthorized
+              handleLogout();
+            } else {
+              setError("Error fetching user data");
+              console.error(error);
             }
-        })
-            .then(response => {
-                // Set user data and loading state to false
-                setUser(response.data);
-            })
-            .catch((error) => {
-                if (error.response && error.response.status === 401) {
-                    // Token expired or unauthorized
-                    handleLogout();
-                } else {
-                    setError('Error fetching user data');
-                    console.error(error);
-                }
-            });
+          });
     }, []);
 
 
@@ -80,18 +81,22 @@ function Dashboard() {
         const token = localStorage.getItem('token');
 
         //Fetch data from goals and Tracks
-        axios.get('https://health-and-wellness-app-back-end.onrender.com/goaltrackers/view', {
-            headers: {
-                'Authorization': `Bearer ${token}`
+        axios
+          .get(
+            "https://health-wellness-backend.onrender.com/goaltrackers/view",
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
             }
-        })
-            .then(response => {
-                setGoalTrack(response.data.data[0]);
-            })
-            .catch((error) => {
-                setError('Error fetching goal track data');
-                console.error(error);
-            });
+          )
+          .then((response) => {
+            setGoalTrack(response.data.data[0]);
+          })
+          .catch((error) => {
+            setError("Error fetching goal track data");
+            console.error(error);
+          });
     }, []);
 
     return (

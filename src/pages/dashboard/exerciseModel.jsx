@@ -31,19 +31,23 @@ function ExerciseModel() {
         const token = localStorage.getItem('token');
 
         // Fetch Exercise MOdel data using token
-        axios.get('https://health-and-wellness-app-back-end.onrender.com/exercisemodels/view', {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-            },
-        })
-            .then(response => {
-                setUser(response.data);
-                setLoading(false); // Data fetched, stop loading
-            })
-            .catch(error => {
-                setError(error);
-                setLoading(false); // Stop loading on error
-            });
+        axios
+          .get(
+            "https://health-wellness-backend.onrender.com/exercisemodels/view",
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          )
+          .then((response) => {
+            setUser(response.data);
+            setLoading(false); // Data fetched, stop loading
+          })
+          .catch((error) => {
+            setError(error);
+            setLoading(false); // Stop loading on error
+          });
     }, []);
 
     const handleInputChange = (e) => {
@@ -63,43 +67,52 @@ function ExerciseModel() {
         // If editExerciseId is set, perform PATCH request; otherwise, add a new MOdel
         if (editExerciseId) {
             // Edit existing Model
-            axios.patch(`https://health-and-wellness-app-back-end.onrender.com/exercisemodels/${editExerciseId}`, formData, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                },
-            })
-                .then(response => {
-                    setUser(prevState => {
-                        return {
-                            ...prevState,
-                            data: prevState.data.map(exe =>
-                                exe._id === editExerciseId ? response.data : exe
-                            )
-                        };
-                    });
-                    setShowPopup(false);
-                    handleReload();
-                    setEditExerciseId(null); // Reset after editing
-
-                })
-                .catch(error => setError(error));
+            axios
+              .patch(
+                `https://health-wellness-backend.onrender.com/exercisemodels/${editExerciseId}`,
+                formData,
+                {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                  },
+                }
+              )
+              .then((response) => {
+                setUser((prevState) => {
+                  return {
+                    ...prevState,
+                    data: prevState.data.map((exe) =>
+                      exe._id === editExerciseId ? response.data : exe
+                    ),
+                  };
+                });
+                setShowPopup(false);
+                handleReload();
+                setEditExerciseId(null); // Reset after editing
+              })
+              .catch((error) => setError(error));
         } else {
             // Add new Model
             const newModel = { ...formData, date: new Date() };
-            axios.post('https://health-and-wellness-app-back-end.onrender.com/exercisemodels', newModel, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                },
-            })
-                .then(response => {
-                    setUser(prevState => ({
-                        ...prevState,
-                        data: [...prevState.data, response.data]
-                    }));
-                    setShowPopup(false);
-                    handleReload();
-                })
-                .catch(error => setError(error));
+            axios
+              .post(
+                "https://health-wellness-backend.onrender.com/exercisemodels",
+                newModel,
+                {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                  },
+                }
+              )
+              .then((response) => {
+                setUser((prevState) => ({
+                  ...prevState,
+                  data: [...prevState.data, response.data],
+                }));
+                setShowPopup(false);
+                handleReload();
+              })
+              .catch((error) => setError(error));
         }
     };
 
@@ -131,19 +144,23 @@ function ExerciseModel() {
     const handleDelete = (exeId) => {
         const token = localStorage.getItem('token');
 
-        axios.delete(`https://health-and-wellness-app-back-end.onrender.com/exercisemodels/${exeId}`, {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-            },
-        })
-            .then(() => {
-                // Refresh the user data by removing the deleted Exercise Model
-                setUser(prevState => ({
-                    ...prevState,
-                    data: prevState.data.filter(exe => exe._id !== exeId)
-                }));
-            })
-            .catch(error => setError(error));
+        axios
+          .delete(
+            `https://health-wellness-backend.onrender.com/exercisemodels/${exeId}`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          )
+          .then(() => {
+            // Refresh the user data by removing the deleted Exercise Model
+            setUser((prevState) => ({
+              ...prevState,
+              data: prevState.data.filter((exe) => exe._id !== exeId),
+            }));
+          })
+          .catch((error) => setError(error));
     };
 
 

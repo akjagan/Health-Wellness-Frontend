@@ -15,10 +15,10 @@ function Footer() {
             <li className='text-2xl mb-5'>Contact Us</li>
             <li>
               <address>
-                500 Terry Francine Street <br />
-                San Francisco, CA 94158 <br />
+                5 Rajiv Gandhi Street <br />
+                W Mambalam , CA 94158 <br />
                 Mail: info@mysite.com <br />
-                Tel: 123-456-7890
+                Tel: 044 43712806
               </address>
             </li>
           </ul>

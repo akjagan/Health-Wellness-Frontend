@@ -39,13 +39,16 @@ function Register() {
         }
 
         try {
-            const response = await fetch('https://health-and-wellness-app-back-end.onrender.com/register', {
-                method: 'POST',
+            const response = await fetch(
+              "https://health-wellness-backend.onrender.com/register",
+              {
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json'
+                  "Content-Type": "application/json",
                 },
-                body: JSON.stringify(formData)
-            });
+                body: JSON.stringify(formData),
+              }
+            );
 
             if (response.ok) {
                 // Handle success

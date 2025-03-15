@@ -41,19 +41,23 @@ function Goal() {
         const token = localStorage.getItem('token');
 
         // Fetch Goal data using token
-        axios.get('https://health-and-wellness-app-back-end.onrender.com/goaltrackers/view', {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-            },
-        })
-            .then(response => {
-                setUser(response.data);
-                setLoading(false); // Data fetched, stop loading
-            })
-            .catch(error => {
-                setError(error);
-                setLoading(false); // Stop loading on error
-            });
+        axios
+          .get(
+            "https://health-wellness-backend.onrender.com/goaltrackers/view",
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          )
+          .then((response) => {
+            setUser(response.data);
+            setLoading(false); // Data fetched, stop loading
+          })
+          .catch((error) => {
+            setError(error);
+            setLoading(false); // Stop loading on error
+          });
     }, []);
 
     const handleInputChange = (e) => {
@@ -72,43 +76,52 @@ function Goal() {
         // If editGoalId is set, perform PATCH request; otherwise, add a new goal & track
         if (editTrackId) {
             // Edit existing goal
-            axios.patch(`https://health-and-wellness-app-back-end.onrender.com/goaltrackers/${editTrackId}`, formData, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                },
-            })
-                .then(response => {
-                    setUser(prevState => {
-                        return {
-                            ...prevState,
-                            data: prevState.data.map(track =>
-                                track._id === editTrackId ? response.data : track
-                            )
-                        };
-                    });
-                    setShowPopup(false);
-                    handleReload();
-                    setEditTrackId(null); // Reset after editing
-
-                })
-                .catch(error => setError(error));
+            axios
+              .patch(
+                `https://health-wellness-backend.onrender.com/goaltrackers/${editTrackId}`,
+                formData,
+                {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                  },
+                }
+              )
+              .then((response) => {
+                setUser((prevState) => {
+                  return {
+                    ...prevState,
+                    data: prevState.data.map((track) =>
+                      track._id === editTrackId ? response.data : track
+                    ),
+                  };
+                });
+                setShowPopup(false);
+                handleReload();
+                setEditTrackId(null); // Reset after editing
+              })
+              .catch((error) => setError(error));
         } else {
             // Add new Goal & Track
             const newTrack = { ...formData, date: new Date() };
-            axios.post('https://health-and-wellness-app-back-end.onrender.com/goaltrackers', newTrack, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                },
-            })
-                .then(response => {
-                    setUser(prevState => ({
-                        ...prevState,
-                        data: [...prevState.data, response.data]
-                    }));
-                    setShowPopup(false);
-                    handleReload();
-                })
-                .catch(error => setError(error));
+            axios
+              .post(
+                "https://health-wellness-backend.onrender.com/goaltrackers",
+                newTrack,
+                {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                  },
+                }
+              )
+              .then((response) => {
+                setUser((prevState) => ({
+                  ...prevState,
+                  data: [...prevState.data, response.data],
+                }));
+                setShowPopup(false);
+                handleReload();
+              })
+              .catch((error) => setError(error));
         }
     };
 
@@ -153,19 +166,23 @@ function Goal() {
     const handleDelete = (trackId) => {
         const token = localStorage.getItem('token');
 
-        axios.delete(`https://health-and-wellness-app-back-end.onrender.com/goaltrackers/${trackId}`, {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-            },
-        })
-            .then(() => {
-                // Refresh the user data by removing the deleted goal
-                setUser(prevState => ({
-                    ...prevState,
-                    data: prevState.data.filter(track => track._id !== trackId)
-                }));
-            })
-            .catch(error => setError(error));
+        axios
+          .delete(
+            `https://health-wellness-backend.onrender.com/goaltrackers/${trackId}`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          )
+          .then(() => {
+            // Refresh the user data by removing the deleted goal
+            setUser((prevState) => ({
+              ...prevState,
+              data: prevState.data.filter((track) => track._id !== trackId),
+            }));
+          })
+          .catch((error) => setError(error));
     };
 
     return (

@@ -17,20 +17,24 @@ const DoughnutChart = () => {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-        axios.get('https://health-and-wellness-app-back-end.onrender.com/goaltrackers/view', {
-            headers: {
-                'Authorization': `Bearer ${token}`
+        axios
+          .get(
+            "https://health-wellness-backend.onrender.com/goaltrackers/view",
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
             }
-        })
-            .then(response => {
-                if (response.data && response.data.data.length > 0) {
-                    setGoalTrack(response.data.data[0]);
-                }
-            })
-            .catch((error) => {
-                setError('Error fetching goal track data');
-                console.error(error);
-            });
+          )
+          .then((response) => {
+            if (response.data && response.data.data.length > 0) {
+              setGoalTrack(response.data.data[0]);
+            }
+          })
+          .catch((error) => {
+            setError("Error fetching goal track data");
+            console.error(error);
+          });
     }, []);
 
 

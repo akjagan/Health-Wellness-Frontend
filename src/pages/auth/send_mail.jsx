@@ -16,13 +16,16 @@ function Sendmail() {
         };
 
         try {
-            const response = await fetch('https://health-and-wellness-app-back-end.onrender.com/forgotpassword', {
-                method: 'POST',
+            const response = await fetch(
+              "https://health-wellness-backend.onrender.com/forgotpassword",
+              {
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json'
+                  "Content-Type": "application/json",
                 },
-                body: JSON.stringify(formData)
-            });
+                body: JSON.stringify(formData),
+              }
+            );
 
             const result = await response.json();
 
